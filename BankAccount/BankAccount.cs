@@ -1,19 +1,43 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BankAccount
+﻿namespace BankAccount
 {
     public class BankAccount
     {
-        //Lägg till Egenskaper (fields)
+        string? AccountNumber { get; set; }
+        string? AccountHolder { get; set; }
+        decimal Saldo { get; set; }
 
-        //Lägg till Konstruktor
+        public BankAccount(string AccountNumber, string AccountHolder, decimal Saldo)
+        {
+            this.AccountNumber = AccountNumber;
+            this.AccountHolder = AccountHolder;
+            this.Saldo = Saldo;
+        }
 
-        //Lägg till Metoder
+        public void GetBankAccountInfo()
+        {
+            Console.WriteLine($"Holder: {AccountHolder}, AccountNmr: {AccountNumber}, Saldo: {Saldo}");
+        }
 
-        //Lycka till! :)
+        public string Deposit(decimal amount)
+        {
+            return $"Deposited: {amount}, New Balance: {Saldo += amount}";
+        }
+        public string Withdraw(decimal amount)
+        {
+            if (amount <= Saldo)
+            {
+                Saldo -= amount;
+                return $"Withdrew: {amount} New Balance: {Saldo}.";
+            }
+            else
+            {
+                return "Uttaget kan inte genomföras, otillräckliga medel.";
+            }
+        }
+
+        public void Balance()
+        {
+            Console.WriteLine($"Balance: {Saldo}");
+        }
     }
 }
